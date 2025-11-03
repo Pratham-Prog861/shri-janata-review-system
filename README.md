@@ -632,7 +632,7 @@ mongodb://localhost:27017/review-system
 **MongoDB Atlas:**
 
 ```bash
-mongodb+srv://username:password@cluster.mongodb.net/review-system?retryWrites=true&w=majority
+mongodb+srv://<your-username>:<your-password>@<cluster-name>.mongodb.net/<database-name>?retryWrites=true&w=majority
 ```
 
 ### Google My Business API Setup
