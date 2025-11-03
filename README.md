@@ -95,7 +95,7 @@ A modern, full-stack web application that enables businesses to collect customer
 
 ```bash
 # Clone the repository
-git clone review-discount-system
+git clone https://github.com/Pratham-Prog861/shri-janata-review-system.git
 cd review-discount-system
 
 # Install backend dependencies
