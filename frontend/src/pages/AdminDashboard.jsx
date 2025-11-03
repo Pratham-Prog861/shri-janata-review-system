@@ -10,6 +10,15 @@ function AdminDashboard() {
     discountPercentage: "",
     description: "",
   });
+  const [passwordData, setPasswordData] = useState({
+    currentPassword: "",
+    newPassword: "",
+    confirmPassword: "",
+  });
+  const [passwordMessage, setPasswordMessage] = useState({
+    type: "",
+    text: "",
+  });
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -80,6 +89,48 @@ function AdminDashboard() {
     }
   };
 
+  const handlePasswordChange = async (e) => {
+    e.preventDefault();
+    setPasswordMessage({ type: "", text: "" });
+
+    // Validate passwords match
+    if (passwordData.newPassword !== passwordData.confirmPassword) {
+      setPasswordMessage({ type: "error", text: "New passwords do not match" });
+      return;
+    }
+
+    // Validate password length
+    if (passwordData.newPassword.length < 6) {
+      setPasswordMessage({
+        type: "error",
+        text: "New password must be at least 6 characters",
+      });
+      return;
+    }
+
+    try {
+      await api.post("/auth/change-password", {
+        currentPassword: passwordData.currentPassword,
+        newPassword: passwordData.newPassword,
+      });
+
+      setPasswordMessage({
+        type: "success",
+        text: "Password changed successfully!",
+      });
+      setPasswordData({
+        currentPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+      });
+    } catch (error) {
+      setPasswordMessage({
+        type: "error",
+        text: error.response?.data?.message || "Failed to change password",
+      });
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -123,6 +174,16 @@ function AdminDashboard() {
             }`}
           >
             Discount Offers
+          </button>
+          <button
+            onClick={() => setActiveTab("settings")}
+            className={`px-6 py-2 rounded-lg font-semibold ${
+              activeTab === "settings"
+                ? "bg-blue-600 text-white"
+                : "bg-white text-gray-700 hover:bg-gray-100"
+            }`}
+          >
+            Settings
           </button>
         </div>
 
@@ -268,6 +329,110 @@ function AdminDashboard() {
                   </p>
                 )}
               </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === "settings" && (
+          <div className="bg-white rounded-lg shadow-md p-6 max-w-2xl">
+            <h2 className="text-2xl font-bold mb-6">Account Settings</h2>
+
+            <div className="mb-8">
+              <h3 className="text-lg font-semibold mb-4">Change Password</h3>
+              <form onSubmit={handlePasswordChange} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium mb-2">
+                    Current Password
+                  </label>
+                  <input
+                    type="password"
+                    required
+                    value={passwordData.currentPassword}
+                    onChange={(e) =>
+                      setPasswordData({
+                        ...passwordData,
+                        currentPassword: e.target.value,
+                      })
+                    }
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    placeholder="Enter current password"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2">
+                    New Password
+                  </label>
+                  <input
+                    type="password"
+                    required
+                    value={passwordData.newPassword}
+                    onChange={(e) =>
+                      setPasswordData({
+                        ...passwordData,
+                        newPassword: e.target.value,
+                      })
+                    }
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    placeholder="Enter new password (min 6 characters)"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2">
+                    Confirm New Password
+                  </label>
+                  <input
+                    type="password"
+                    required
+                    value={passwordData.confirmPassword}
+                    onChange={(e) =>
+                      setPasswordData({
+                        ...passwordData,
+                        confirmPassword: e.target.value,
+                      })
+                    }
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    placeholder="Confirm new password"
+                  />
+                </div>
+
+                {passwordMessage.text && (
+                  <div
+                    className={`p-3 rounded-lg ${
+                      passwordMessage.type === "success"
+                        ? "bg-green-100 text-green-800"
+                        : "bg-red-100 text-red-800"
+                    }`}
+                  >
+                    {passwordMessage.text}
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
+                >
+                  Change Password
+                </button>
+              </form>
+            </div>
+
+            <div className="border-t pt-6">
+              <h3 className="text-lg font-semibold mb-2">
+                Account Information
+              </h3>
+              <p className="text-gray-600">
+                Username:{" "}
+                <span className="font-medium">
+                  {localStorage.getItem("username") || "admin"}
+                </span>
+              </p>
+              <p className="text-sm text-gray-500 mt-2">
+                For security, we recommend using a strong password with at least
+                8 characters, including uppercase, lowercase, numbers, and
+                special characters.
+              </p>
             </div>
           </div>
         )}

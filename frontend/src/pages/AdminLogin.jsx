@@ -16,6 +16,7 @@ function AdminLogin() {
     try {
       const response = await api.post("/auth/login", formData);
       localStorage.setItem("token", response.data.token);
+      localStorage.setItem("username", response.data.username);
       navigate("/admin/dashboard");
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
