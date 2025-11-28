@@ -1,13 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import QRCode from "qrcode";
 import ReviewPopup from "../components/ReviewPopup";
+import CustomerReviewsMarquee from "../components/CustomerReviewsMarquee";
+import MenuSection from "../components/MenuSection";
+import DeliveryPartnersMarquee from "../components/DeliveryPartnersMarquee";
+import Footer from "../components/Footer";
 import api from "../config/api";
 
 function Home() {
   const [searchParams] = useSearchParams();
   const [showPopup, setShowPopup] = useState(false);
-  const [qrCodeUrl, setQrCodeUrl] = useState("");
   const [activeOffer, setActiveOffer] = useState(null);
   const hasOpenedPopup = useRef(false);
 
@@ -19,11 +21,6 @@ function Home() {
   }, [searchParams]);
 
   useEffect(() => {
-    const reviewUrl = `${window.location.origin}/?review=true`;
-    QRCode.toDataURL(reviewUrl, { width: 300 })
-      .then(setQrCodeUrl)
-      .catch(console.error);
-
     api
       .get("/offers/active")
       .then((res) => setActiveOffer(res.data))
@@ -31,17 +28,30 @@ function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-blue-50 to-purple-50">
-      <nav className="bg-white shadow-md">
+    <div
+      className="min-h-screen"
+      style={{
+        background: "linear-gradient(to bottom right, #FFEEA9, #FFBF78)",
+      }}
+    >
+      <nav
+        className="bg-white shadow-md border-b-4"
+        style={{ borderColor: "#FF7D29" }}
+      >
         <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-blue-600">Review System</h1>
+          <h1 className="text-2xl font-bold" style={{ color: "#BD5E21" }}>
+            Shree Janta Ice Cream
+          </h1>
           <div className="space-x-4">
-            <Link to="/reviews" className="text-gray-700 hover:text-blue-600">
+            <Link
+              to="/reviews"
+              className="text-gray-700 hover:text-orange-600 font-medium"
+            >
               View Reviews
             </Link>
             <Link
               to="/admin/login"
-              className="text-gray-700 hover:text-blue-600"
+              className="text-gray-700 hover:text-orange-600 font-medium"
             >
               Admin
             </Link>
@@ -50,22 +60,77 @@ function Home() {
       </nav>
 
       <div className="max-w-6xl mx-auto px-4 py-12">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4">Welcome!</h2>
-          <p className="text-xl text-gray-600">
-            Share your experience and get rewarded
-          </p>
-        </div>
+        <div className="grid md:grid-cols-2 gap-12 items-center min-h-[80vh]">
+          {/* Left Side - Tagline */}
+          <div className="space-y-6">
+            {/* Legacy Badge */}
+            <div className="flex justify-center md:justify-start">
+              <div
+                className="inline-flex items-center justify-center w-32 h-32 rounded-full border-4 bg-white shadow-lg"
+                style={{ borderColor: "#FF7D29" }}
+              >
+                <div className="text-center">
+                  <p
+                    className="font-semibold text-sm"
+                    style={{ color: "#FF7D29" }}
+                  >
+                    Since
+                  </p>
+                  <p
+                    className="font-bold text-2xl"
+                    style={{ color: "#BD5E21" }}
+                  >
+                    1985
+                  </p>
+                  <p
+                    className="font-semibold text-lg"
+                    style={{ color: "#FF7D29" }}
+                  >
+                    40 Years
+                  </p>
+                  <p
+                    className="font-semibold text-sm"
+                    style={{ color: "#BD5E21" }}
+                  >
+                    Legacy
+                  </p>
+                </div>
+              </div>
+            </div>
 
-        <div className="grid md:grid-cols-2 gap-8 items-center">
-          <div className="bg-white p-8 rounded-lg shadow-lg">
-            <h3 className="text-2xl font-bold mb-4">Leave a Review</h3>
+            <h2
+              className="text-4xl md:text-6xl font-bold leading-tight"
+              style={{ color: "#BD5E21" }}
+            >
+              Where Every Scoop Tells a Story
+            </h2>
+            <p className="text-lg md:text-xl text-gray-700">
+              Share your experience and get rewarded with exclusive discounts!
+            </p>
+          </div>
+
+          {/* Right Side - Review Form */}
+          <div
+            className="bg-white p-6 md:p-8 rounded-lg shadow-xl border-2"
+            style={{ borderColor: "#FFBF78" }}
+          >
+            <h3
+              className="text-2xl font-bold mb-4"
+              style={{ color: "#BD5E21" }}
+            >
+              Leave a Review
+            </h3>
             <p className="text-gray-600 mb-6">
               Share your feedback and receive an exclusive discount coupon!
             </p>
 
             {activeOffer && (
-              <div className="bg-linear-to-r from-blue-500 to-purple-600 text-white p-6 rounded-lg mb-6">
+              <div
+                className="text-white p-6 rounded-lg mb-6"
+                style={{
+                  background: "linear-gradient(to right, #BD5E21, #FF7D29)",
+                }}
+              >
                 <p className="text-sm mb-1">Current Offer</p>
                 <p className="text-4xl font-bold">
                   {activeOffer.discountPercentage}% OFF
@@ -75,33 +140,30 @@ function Home() {
                 )}
               </div>
             )}
-
             <button
               onClick={() => setShowPopup(true)}
-              className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors text-lg font-semibold"
+              className="w-full text-white py-3 rounded-lg transition-colors text-lg font-semibold shadow-lg"
+              style={{ backgroundColor: "#FF7D29" }}
+              onMouseEnter={(e) => (e.target.style.backgroundColor = "#BD5E21")}
+              onMouseLeave={(e) => (e.target.style.backgroundColor = "#FF7D29")}
             >
               Write a Review
             </button>
           </div>
-
-          <div className="bg-white p-8 rounded-lg shadow-lg text-center">
-            <h3 className="text-2xl font-bold mb-4">Scan QR Code</h3>
-            <p className="text-gray-600 mb-6">
-              Customers can scan this QR code to leave a review
-            </p>
-            {qrCodeUrl && (
-              <img
-                src={qrCodeUrl}
-                alt="Review QR Code"
-                className="mx-auto rounded-lg shadow-md"
-              />
-            )}
-            <p className="text-sm text-gray-500 mt-4">
-              Print this QR code and display it at your location
-            </p>
-          </div>
         </div>
       </div>
+
+      {/* Full Menu Section */}
+      <MenuSection />
+
+      {/* What Our Customers Say Section */}
+      <CustomerReviewsMarquee />
+
+      {/* Delivery Partners Section */}
+      <DeliveryPartnersMarquee />
+
+      {/* Footer Section */}
+      <Footer />
 
       <ReviewPopup isOpen={showPopup} onClose={() => setShowPopup(false)} />
     </div>

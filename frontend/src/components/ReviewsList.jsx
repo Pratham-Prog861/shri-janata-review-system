@@ -22,12 +22,33 @@ function ReviewsList({ reviews, showGoogleBadge = false }) {
                   new Date(review.createdAt).toLocaleDateString()}
               </p>
             </div>
-            {showGoogleBadge && (
-              <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">
-                Google Review
-              </span>
-            )}
+            <div className="flex gap-2">
+              {review.category && (
+                <span className="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded">
+                  {review.category}
+                </span>
+              )}
+              {showGoogleBadge && (
+                <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">
+                  Google Review
+                </span>
+              )}
+            </div>
           </div>
+
+          {review.productName && (
+            <div className="mb-3 p-3 bg-gray-50 rounded-lg">
+              <p className="text-sm text-gray-600">
+                <span className="font-medium">Product:</span>{" "}
+                {review.productName}
+                {review.productPrice && (
+                  <span className="ml-2 text-green-600 font-semibold">
+                    ₹{review.productPrice}
+                  </span>
+                )}
+              </p>
+            </div>
+          )}
 
           <StarRating rating={review.rating} readOnly />
 

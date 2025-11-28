@@ -3,18 +3,26 @@ import Review from '../models/Review.js';
 
 export const createReview = async (req, res) => {
   try {
-    const { name, rating, comment } = req.body;
+    const { name, rating, comment, category, productName, productPrice } = req.body;
 
     const activeOffer = await Offer.findOne({ isActive: true }).sort({
       createdAt: -1,
     });
     const couponCode = activeOffer
       ? `DISCOUNT${activeOffer.discountPercentage}-${Date.now()
-          .toString(36)
-          .toUpperCase()}`
+        .toString(36)
+        .toUpperCase()}`
       : null;
 
-    const review = new Review({ name, rating, comment, couponCode });
+    const review = new Review({
+      name,
+      rating,
+      comment,
+      category,
+      productName,
+      productPrice,
+      couponCode
+    });
     await review.save();
 
     // Suggest Google review for positive ratings (4-5 stars)

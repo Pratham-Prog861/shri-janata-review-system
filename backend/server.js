@@ -6,6 +6,8 @@ import authRoutes from './routes/auth.js';
 import googleReviewRoutes from './routes/googleReviews.js';
 import offerRoutes from './routes/offers.js';
 import reviewRoutes from './routes/reviews.js';
+import menuRoutes from './routes/menu.js';
+import { initializeMenuData } from './controllers/menuController.js';
 
 dotenv.config();
 
@@ -13,7 +15,10 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Connect to MongoDB
-connectDB();
+connectDB().then(() => {
+  // Initialize menu data after DB connection
+  initializeMenuData();
+});
 
 // Middleware
 const allowedOrigins = [
@@ -47,6 +52,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/offers', offerRoutes);
 app.use('/api/google-reviews', googleReviewRoutes);
+app.use('/api/menu', menuRoutes);
 
 app.get('/', (req, res) => {
   res.json({ message: 'Review System API' });

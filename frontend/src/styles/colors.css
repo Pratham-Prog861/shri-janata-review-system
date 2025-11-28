@@ -1,0 +1,83 @@
+/* Shree Janta Ice Cream Color Palette */
+:root {
+  --color-dark-orange: #bd5e21;
+  --color-orange: #ff7d29;
+  --color-cream: #ffbf78;
+  --color-light-cream: #ffeea9;
+  --color-white: #ffffff;
+  --color-black: #000000;
+}
+
+/* Utility classes for quick color application */
+.bg-dark-orange {
+  background-color: var(--color-dark-orange);
+}
+.bg-orange {
+  background-color: var(--color-orange);
+}
+.bg-cream {
+  background-color: var(--color-cream);
+}
+.bg-light-cream {
+  background-color: var(--color-light-cream);
+}
+
+.text-dark-orange {
+  color: var(--color-dark-orange);
+}
+.text-orange {
+  color: var(--color-orange);
+}
+.text-cream {
+  color: var(--color-cream);
+}
+.text-light-cream {
+  color: var(--color-light-cream);
+}
+
+.border-dark-orange {
+  border-color: var(--color-dark-orange);
+}
+.border-orange {
+  border-color: var(--color-orange);
+}
+.border-cream {
+  border-color: var(--color-cream);
+}
+.border-light-cream {
+  border-color: var(--color-light-cream);
+}
+
+/* Gradient backgrounds */
+.bg-gradient-orange {
+  background: linear-gradient(
+    to right,
+    var(--color-dark-orange),
+    var(--color-orange)
+  );
+}
+
+.bg-gradient-cream {
+  background: linear-gradient(
+    to bottom right,
+    var(--color-light-cream),
+    var(--color-cream)
+  );
+}
+
+/* Button styles */
+.btn-orange {
+  background-color: var(--color-orange);
+  color: var(--color-white);
+  transition: background-color 0.3s ease;
+}
+
+.btn-orange:hover {
+  background-color: var(--color-dark-orange);
+}
+
+/* Badge styles */
+.badge-cream {
+  background-color: var(--color-light-cream);
+  color: var(--color-dark-orange);
+}

@@ -1,0 +1,155 @@
+{
+  "menu": [
+    {
+      "category": "Ice Creams",
+      "items": [
+        { "name": "Vanilla", "price": 49 },
+        { "name": "Mawa Malai Fista", "price": 49 },
+        { "name": "Gulabi Masti", "price": 59 },
+        { "name": "Pan King", "price": 59 },
+        { "name": "Thandai", "price": 59 },
+        { "name": "Falooda Ice Cream", "price": 59 },
+        { "name": "Anjir Almond", "price": 59 },
+        { "name": "Dates & Honey", "price": 59 },
+        { "name": "Majesty Vanilla", "price": 99 }
+      ]
+    },
+    {
+      "category": "Premium Signature Flavours",
+      "items": [
+        { "name": "Rose-E-Garden", "price": 119 },
+        { "name": "Paan-E-Bahar", "price": 119 },
+        { "name": "Strawberry Kisses", "price": 119 },
+        { "name": "Twilight Orange", "price": 119 },
+        { "name": "Traditions Thandai", "price": 119 },
+        { "name": "Madagascar Vanilla", "price": 119 }
+      ]
+    },
+    {
+      "category": "Shakes",
+      "items": [
+        { "name": "Kitkat Shake", "price": 99 },
+        { "name": "Oreo Shake", "price": 99 }
+      ]
+    },
+    {
+      "category": "Cold Coffee",
+      "items": [
+        { "name": "Classic Thick Cold Coffee", "price": 79 },
+        { "name": "Sp. Chocolate Loaded Thick Cold Coffee", "price": 99 },
+        { "name": "Chocolate Monster Cold Coffee", "price": 119 }
+      ]
+    },
+    {
+      "category": "Ice Cream Cones",
+      "items": [
+        { "name": "Vanilla Cone", "price": 20 },
+        { "name": "Chocolate Cone", "price": 25 }
+      ]
+    },
+    {
+      "category": "Sundaes",
+      "items": [
+        { "name": "Rajbhog Royal Mastic", "price": 149 },
+        { "name": "Chocolate Safari", "price": 149 },
+        { "name": "Royal Salute Sundae (Triple Scoop)", "price": 219 },
+        { "name": "Chocolate Birds Nest", "price": 219 }
+      ]
+    },
+    {
+      "category": "Coco Drinks",
+      "items": [
+        { "name": "Special Cold Coco", "price": 59 },
+        { "name": "Coco with Cadbury", "price": 69 },
+        { "name": "Coco with Ice Cream", "price": 69 }
+      ]
+    },
+    {
+      "category": "Falooda",
+      "items": [
+        { "name": "Kesar Falooda", "price": 99 },
+        { "name": "Rose Falooda", "price": 99 },
+        { "name": "Chocolate Falooda", "price": 99 }
+      ]
+    },
+    {
+      "category": "Lassi",
+      "items": [
+        { "name": "Special Lassi", "price": 39 },
+        { "name": "Kesar Lassi", "price": 49 },
+        { "name": "Rose Lassi", "price": 49 },
+        { "name": "Mango Lassi", "price": 49 }
+      ]
+    },
+    {
+      "category": "Fruit Flavours Ice Cream",
+      "items": [
+        { "name": "Black Currant (Regular)", "price": 59 },
+        { "name": "Black Currant (Premium)", "price": 159 },
+        { "name": "Black Jamun", "price": 59 },
+        { "name": "Coconut", "price": 59 },
+        { "name": "Chikoo", "price": 59 },
+        { "name": "Custard Apple", "price": 59 },
+        { "name": "Masaledar Guava", "price": 59 },
+        { "name": "Alphonso Mango", "price": 59 },
+        { "name": "Juicy Lychee", "price": 59 },
+        { "name": "Pina Orange", "price": 59 },
+        { "name": "Pina Ruby", "price": 159 },
+        { "name": "Lychee Valley", "price": 159 },
+        { "name": "Kiwi", "price": 59 },
+        { "name": "Strawberry", "price": 59 },
+        { "name": "Fruit Overload", "price": 59 }
+      ]
+    },
+    {
+      "category": "Chocolate-Based Flavours",
+      "items": [
+        { "name": "Swiss Miss Chocolate", "price": 99 },
+        { "name": "Crunchy Chocolate Oreo", "price": 159 },
+        { "name": "Black Pearl Fantasy Chocolate", "price": 159 },
+        { "name": "Light Brownish Crunchy Kitkat", "price": 159 },
+        { "name": "Crunchy Oreo Crumble", "price": 79 },
+        { "name": "Chocolate Chips", "price": 49 },
+        { "name": "Chocolate Safari", "price": 149 },
+        { "name": "Chocomoco Brownie", "price": 59 },
+        { "name": "Bourbon Chocolate", "price": 59 },
+        { "name": "Belgian Chocolate", "price": 59 },
+        { "name": "Mint Chocolate", "price": 59 },
+        { "name": "Kitkat", "price": 59 },
+        { "name": "Wall Crunch", "price": 59 },
+        { "name": "Winter Cream", "price": 59 }
+      ]
+    },
+    {
+      "category": "Dry Fruit & Premium",
+      "items": [
+        { "name": "Nutty & Healthy 24 Carats", "price": 169 },
+        { "name": "Nutty Fruit Valley", "price": 79 },
+        { "name": "Afghan Dry Fruit", "price": 59 },
+        { "name": "American Dry Fruit", "price": 59 },
+        { "name": "Roasted Almond", "price": 59 },
+        { "name": "Fruit & Nut Chocolate", "price": 59 },
+        { "name": "Almond Chocolate", "price": 59 },
+        { "name": "Kaju Draksh", "price": 49 },
+        { "name": "Kaju Anjir", "price": 59 }
+      ]
+    },
+    {
+      "category": "Indian Special Flavours",
+      "items": [
+        { "name": "Kesar Elaichi", "price": 49 },
+        { "name": "Panchamrut", "price": 59 },
+        { "name": "Kesar Pista", "price": 59 },
+        { "name": "Rajbhog", "price": 59 }
+      ]
+    },
+    {
+      "category": "Cream Specials",
+      "items": [
+        { "name": "Special Cake Cream", "price": 69 },
+        { "name": "White House", "price": 59 },
+        { "name": "Sweet Dream", "price": 59 }
+      ]
+    }
+  ]
+}
