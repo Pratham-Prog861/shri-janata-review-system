@@ -17,8 +17,11 @@ function CustomerReviewsMarquee() {
     fetchReviews();
   }, []);
 
-  // Duplicate reviews for seamless infinite scroll
-  const duplicatedReviews = [...reviews, ...reviews];
+  // Create a base set of reviews duplicated multiple times
+  const baseReviews = [...reviews, ...reviews, ...reviews, ...reviews];
+
+  // Double the base set for the seamless loop effect
+  const duplicatedReviews = [...baseReviews, ...baseReviews];
 
   return (
     <div
@@ -102,12 +105,13 @@ function CustomerReviewsMarquee() {
 
         .marquee-content {
           display: flex;
-          animation: marquee 10s linear infinite;
+          width: fit-content;
+          animation: marquee 40s linear infinite;
         }
 
         @media (min-width: 768px) {
           .marquee-content {
-            animation: marquee 20s linear infinite;
+            animation: marquee 80s linear infinite;
           }
         }
 

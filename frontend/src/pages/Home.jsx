@@ -39,9 +39,12 @@ function Home() {
         style={{ borderColor: "#FF7D29" }}
       >
         <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold" style={{ color: "#BD5E21" }}>
+          <div className="flex items-center space-x-2">
+            <img src="/logo.jpg" className="w-16 h-16 rounded-full" alt="Logo" />
+            <h1 className="text-2xl font-bold" style={{ color: "#BD5E21" }}>
             Shree Janta Ice Cream
           </h1>
+          </div>
           <div className="space-x-4">
             <Link
               to="/reviews"

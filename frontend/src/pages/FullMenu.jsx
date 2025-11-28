@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import api from "../config/api";
 
-function MenuSection() {
+function FullMenu() {
   const [menuData, setMenuData] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchMenuData = async () => {
@@ -21,6 +22,8 @@ function MenuSection() {
         setCategories(uniqueCategories);
       } catch (error) {
         console.error("Failed to fetch menu data:", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchMenuData();
@@ -29,21 +32,20 @@ function MenuSection() {
   // Filter products based on selected category
   const getFilteredProducts = () => {
     if (selectedCategory === "All") {
-      // Get 4 random products from all categories
-      const allProducts = menuData.flatMap((category) =>
+      // Get all products from all categories
+      return menuData.flatMap((category) =>
         category.items.map((item) => ({
           ...item,
           category: category.category,
         }))
       );
-      return allProducts.slice(0, 4);
     } else {
-      // Get 4 products from selected category
+      // Get products from selected category
       const categoryData = menuData.find(
         (item) => item.category === selectedCategory
       );
       if (categoryData) {
-        return categoryData.items.slice(0, 4).map((item) => ({
+        return categoryData.items.map((item) => ({
           ...item,
           category: categoryData.category,
         }));
@@ -54,21 +56,50 @@ function MenuSection() {
 
   const filteredProducts = getFilteredProducts();
 
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-orange-500"></div>
+      </div>
+    );
+  }
+
   return (
-    <div className="bg-white py-16">
-      <div className="max-w-6xl mx-auto px-4">
-        {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-2" style={{ color: "#BD5E21" }}>
-            Our Full Menu
-          </h2>
-          <p className="text-gray-600">
-            Explore our delicious selection of ice creams and treats
+    <div className="bg-white min-h-screen pb-16">
+      {/* Header */}
+      <div className="bg-orange-50 py-8 shadow-sm mb-8">
+        <div className="max-w-6xl mx-auto px-4">
+          <Link
+            to="/"
+            className="inline-flex items-center text-orange-600 hover:text-orange-700 font-medium mb-4 transition-colors"
+          >
+            <svg
+              className="w-5 h-5 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+              />
+            </svg>
+            Back to Home
+          </Link>
+          <h1 className="text-4xl font-bold" style={{ color: "#BD5E21" }}>
+            Full Menu
+          </h1>
+          <p className="text-gray-600 mt-2">
+            Explore our complete collection of delicious treats
           </p>
         </div>
+      </div>
 
+      <div className="max-w-6xl mx-auto px-4">
         {/* Category Filter */}
-        <div className="flex overflow-x-auto pb-4 md:pb-0 md:flex-wrap md:justify-center gap-3 mb-12 no-scrollbar">
+        <div className="flex overflow-x-auto pb-4 md:pb-0 md:flex-wrap md:justify-center gap-3 mb-12 no-scrollbar sticky top-4 z-10 bg-white/90 backdrop-blur-sm p-4 rounded-xl shadow-sm">
           {categories.map((category) => (
             <button
               key={category}
@@ -155,18 +186,13 @@ function MenuSection() {
           ))}
         </div>
 
-        {/* View Full Menu Button */}
-        <div className="text-center mt-12">
-          <Link
-            to="/full-menu"
-            className="inline-block text-white px-8 py-3 rounded-lg transition-all font-semibold text-lg shadow-lg hover:scale-105"
-            style={{
-              background: "linear-gradient(to right, #BD5E21, #FF7D29)",
-            }}
-          >
-            View Full Menu
-          </Link>
-        </div>
+        {filteredProducts.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-gray-500 text-lg">
+              No products found in this category.
+            </p>
+          </div>
+        )}
       </div>
 
       <style jsx>{`
@@ -190,4 +216,4 @@ function MenuSection() {
   );
 }
 
-export default MenuSection;
+export default FullMenu;

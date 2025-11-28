@@ -13,32 +13,20 @@ function DeliveryPartnersMarquee() {
       logoText: "Swiggy",
       hasIcon: true,
     },
-    {
-      name: "ubereats",
-      displayName: "Uber Eats",
-      textColor: "#06C167",
-      logoText: "Uber Eats",
-    },
-    {
-      name: "dunzo",
-      displayName: "Dunzo",
-      textColor: "#E52B50",
-      logoText: "Dunzo",
-    },
-    {
-      name: "magicpin",
-      displayName: "magicpin",
-      textColor: "#FF6B6B",
-      logoText: "magicpin",
-    },
   ];
 
-  // Duplicate for seamless infinite scroll
-  const duplicatedPartners = [
+  // Create a base set of partners duplicated multiple times to ensure it fills the screen
+  const basePartners = [
+    ...deliveryPartners,
+    ...deliveryPartners,
+    ...deliveryPartners,
     ...deliveryPartners,
     ...deliveryPartners,
     ...deliveryPartners,
   ];
+
+  // Double the base set for the seamless loop effect
+  const duplicatedPartners = [...basePartners, ...basePartners];
 
   return (
     <div
@@ -105,12 +93,13 @@ function DeliveryPartnersMarquee() {
 
         .delivery-marquee-content {
           display: flex;
-          animation: delivery-scroll 10s linear infinite;
+          width: fit-content;
+          animation: delivery-scroll 20s linear infinite;
         }
 
         @media (min-width: 768px) {
           .delivery-marquee-content {
-            animation: delivery-scroll 20s linear infinite;
+            animation: delivery-scroll 40s linear infinite;
           }
         }
 
@@ -123,7 +112,7 @@ function DeliveryPartnersMarquee() {
             transform: translateX(0);
           }
           100% {
-            transform: translateX(-33.33%);
+            transform: translateX(-50%);
           }
         }
       `}</style>
