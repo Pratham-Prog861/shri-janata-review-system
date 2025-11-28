@@ -81,6 +81,7 @@ export const toggleReviewVisibility = async (req, res) => {
   }
 };
 
+
 export const deleteReview = async (req, res) => {
   try {
     const review = await Review.findByIdAndDelete(req.params.id);
@@ -91,5 +92,51 @@ export const deleteReview = async (req, res) => {
     res.json({ message: 'Review deleted successfully' });
   } catch (error) {
     res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
+
+export const exportReviews = async (req, res) => {
+  try {
+    const reviews = await Review.find().sort({ createdAt: -1 });
+
+    const fields = [
+      'Name',
+      'Rating',
+      'Comment',
+      'Category',
+      'Product Name',
+      'Product Price',
+      'Date',
+      'Coupon Code',
+      'Is Visible'
+    ];
+
+    const csvRows = [fields.join(',')];
+
+    reviews.forEach(review => {
+      const safeString = (str) => (str || '').replace(/"/g, '""');
+
+      const row = [
+        `"${safeString(review.name)}"`,
+        review.rating,
+        `"${safeString(review.comment)}"`,
+        `"${safeString(review.category)}"`,
+        `"${safeString(review.productName)}"`,
+        review.productPrice || 0,
+        `"${new Date(review.createdAt).toISOString()}"`,
+        review.couponCode ? `"${safeString(review.couponCode)}"` : '""',
+        review.isVisible
+      ];
+      csvRows.push(row.join(','));
+    });
+
+    const csvString = csvRows.join('\n');
+
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', 'attachment; filename=reviews.csv');
+    res.status(200).send(csvString);
+  } catch (error) {
+    console.error('Export Reviews Error:', error);
+    res.status(500).json({ message: 'Server error during export', error: error.message });
   }
 };

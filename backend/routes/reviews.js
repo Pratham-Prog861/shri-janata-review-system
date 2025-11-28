@@ -5,7 +5,8 @@ import {
     getReviews,
     getAllReviews,
     toggleReviewVisibility,
-    deleteReview
+    deleteReview,
+    exportReviews
 } from '../controllers/reviewController.js';
 import { authMiddleware } from '../middleware/auth.js';
 
@@ -18,6 +19,7 @@ router.post('/', [
 ], createReview);
 
 router.get('/', getReviews);
+router.get('/export', authMiddleware, exportReviews);
 router.get('/all', authMiddleware, getAllReviews);
 router.patch('/:id/toggle', authMiddleware, toggleReviewVisibility);
 router.delete('/:id', authMiddleware, deleteReview);
