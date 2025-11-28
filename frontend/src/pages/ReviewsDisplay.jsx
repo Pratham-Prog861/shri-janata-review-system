@@ -49,11 +49,24 @@ function ReviewsDisplay() {
       : 0;
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <nav className="bg-white shadow-md">
+    <div
+      className="min-h-screen"
+      style={{
+        background: "linear-gradient(to bottom right, #FFEEA9, #FFBF78)",
+      }}
+    >
+      <nav
+        className="bg-white shadow-md border-b-4"
+        style={{ borderColor: "#FF7D29" }}
+      >
         <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-blue-600">Review System</h1>
-          <Link to="/" className="text-gray-700 hover:text-blue-600">
+          <h1 className="text-2xl font-bold" style={{ color: "#BD5E21" }}>
+            Shree Janta Ice Cream ( Since 1964 )
+          </h1>
+          <Link
+            to="/"
+            className="text-gray-700 hover:text-orange-600 font-medium"
+          >
             Back to Home
           </Link>
         </div>
@@ -61,30 +74,47 @@ function ReviewsDisplay() {
 
       <div className="max-w-4xl mx-auto px-4 py-12">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4">Customer Reviews</h2>
+          <h2 className="text-4xl font-bold mb-4" style={{ color: "#BD5E21" }}>
+            Customer Reviews
+          </h2>
           <div className="flex items-center justify-center gap-2 text-2xl">
             <span className="text-yellow-400">★</span>
-            <span className="font-bold">{averageRating}</span>
-            <span className="text-gray-500">({allReviews.length} reviews)</span>
+            <span className="font-bold" style={{ color: "#BD5E21" }}>
+              {averageRating}
+            </span>
+            <span className="text-gray-700">({allReviews.length} reviews)</span>
           </div>
         </div>
 
         {loading ? (
           <div className="text-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <div
+              className="animate-spin rounded-full h-12 w-12 border-b-2 mx-auto"
+              style={{ borderColor: "#FF7D29" }}
+            ></div>
           </div>
         ) : (
           <>
             {localReviews.length > 0 && (
               <div className="mb-8">
-                <h3 className="text-2xl font-bold mb-4">Recent Reviews</h3>
+                <h3
+                  className="text-2xl font-bold mb-4"
+                  style={{ color: "#BD5E21" }}
+                >
+                  Recent Reviews
+                </h3>
                 <ReviewsList reviews={localReviews} />
               </div>
             )}
 
             {googleReviews.length > 0 && (
               <div>
-                <h3 className="text-2xl font-bold mb-4">Google Reviews</h3>
+                <h3
+                  className="text-2xl font-bold mb-4"
+                  style={{ color: "#BD5E21" }}
+                >
+                  Google Reviews
+                </h3>
                 <ReviewsList reviews={googleReviews} showGoogleBadge />
               </div>
             )}

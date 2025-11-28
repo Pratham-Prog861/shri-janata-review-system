@@ -39,12 +39,9 @@ function Home() {
         style={{ borderColor: "#FF7D29" }}
       >
         <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <img src="/logo.jpg" className="w-16 h-16 rounded-full" alt="Logo" />
-            <h1 className="text-2xl font-bold" style={{ color: "#BD5E21" }}>
+          <h1 className="text-2xl font-bold" style={{ color: "#FF7D29" }}>
             Shree Janta Ice Cream
           </h1>
-          </div>
           <div className="space-x-4">
             <Link
               to="/reviews"
@@ -68,36 +65,12 @@ function Home() {
           <div className="space-y-6">
             {/* Legacy Badge */}
             <div className="flex justify-center md:justify-start">
-              <div
-                className="inline-flex items-center justify-center w-32 h-32 rounded-full border-4 bg-white shadow-lg"
-                style={{ borderColor: "#FF7D29" }}
-              >
-                <div className="text-center">
-                  <p
-                    className="font-semibold text-sm"
-                    style={{ color: "#FF7D29" }}
-                  >
-                    Since
-                  </p>
-                  <p
-                    className="font-bold text-2xl"
-                    style={{ color: "#BD5E21" }}
-                  >
-                    1985
-                  </p>
-                  <p
-                    className="font-semibold text-lg"
-                    style={{ color: "#FF7D29" }}
-                  >
-                    40 Years
-                  </p>
-                  <p
-                    className="font-semibold text-sm"
-                    style={{ color: "#BD5E21" }}
-                  >
-                    Legacy
-                  </p>
-                </div>
+              <div className="inline-flex items-center justify-center w-60 h-60 sm:w-52 sm:h-52 rounded-full shadow-lg overflow-hidden">
+                <img
+                  src="/logo.jpg"
+                  className="w-60 h-60 sm:w-52 sm:h-52 rounded-full object-cover"
+                  alt="Logo"
+                />
               </div>
             </div>
 
@@ -113,10 +86,7 @@ function Home() {
           </div>
 
           {/* Right Side - Review Form */}
-          <div
-            className="bg-white p-6 md:p-8 rounded-lg shadow-xl border-2"
-            style={{ borderColor: "#FFBF78" }}
-          >
+          <div className="bg-white p-6 md:p-8 rounded-lg shadow-xl border-2">
             <h3
               className="text-2xl font-bold mb-4"
               style={{ color: "#BD5E21" }}
