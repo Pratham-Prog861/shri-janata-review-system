@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function StarRating({ rating, setRating, readOnly = false }) {
+function StarRating({ rating, onRatingChange, readOnly = false }) {
   const [hover, setHover] = useState(0);
 
   return (
@@ -13,7 +13,7 @@ function StarRating({ rating, setRating, readOnly = false }) {
           className={`text-3xl transition-colors ${
             readOnly ? "cursor-default" : "cursor-pointer"
           } ${star <= (hover || rating) ? "text-yellow-400" : "text-gray-300"}`}
-          onClick={() => !readOnly && setRating(star)}
+          onClick={() => !readOnly && onRatingChange(star)}
           onMouseEnter={() => !readOnly && setHover(star)}
           onMouseLeave={() => !readOnly && setHover(0)}
         >

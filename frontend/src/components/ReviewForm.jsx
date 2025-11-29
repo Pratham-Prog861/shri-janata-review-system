@@ -151,8 +151,8 @@ function ReviewForm({ onSuccess }) {
             }
           >
             <option value="">Select Category</option>
-            {categories.map((cat) => (
-              <option key={cat} value={cat}>
+            {categories.map((cat, index) => (
+              <option key={`${cat}-${index}`} value={cat}>
                 {cat}
               </option>
             ))}
@@ -173,8 +173,8 @@ function ReviewForm({ onSuccess }) {
             <option value="">
               {formData.category ? "Select Product" : "Select Category First"}
             </option>
-            {products.map((product) => (
-              <option key={product._id} value={product.name}>
+            {products.map((product, index) => (
+              <option key={product._id || index} value={product.name}>
                 {product.name}
               </option>
             ))}
